@@ -35,11 +35,11 @@ export const StyledItemDetails = styled.div`
 
     p {
         color: white;
-        font-weight: 700;
     }
 
     p:nth-child(2) {
         margin-bottom: 0px;
+        font-weight: 700;
     }
 
     button {

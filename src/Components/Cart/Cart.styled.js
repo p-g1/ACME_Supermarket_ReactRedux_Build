@@ -18,10 +18,14 @@ export const StyledButton = styled.button`
 `
 
 export const StyledItemDetails = styled.div`
-    
     padding: 10px;
-    span, p {
+    
+    p {
         color: white;
+    }
+
+    p:nth-child(1) {
+        margin-bottom: 0px;
         font-weight: 700;
     }
 
