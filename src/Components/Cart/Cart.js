@@ -18,7 +18,10 @@ class Cart extends Component{
         this.props.subtractQuantity(code);
         console.log(this.props);
     }
+
     render(){
+
+        console.log(this.props.items)
               
         let addedItems = this.props.items.length ?
             (  

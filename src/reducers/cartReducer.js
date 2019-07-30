@@ -75,12 +75,15 @@ const cartReducer = (state = initState, action) => {
     
           addedItem.quantity += 1 
           let newTotal = state.total + addedItem.price
+          
           return {
               ...state,
+              addedItems: [...state.addedItems],
               total: newTotal
           }
     }
     if(action.type=== SUB_QUANTITY){  
+        // item to be removed
         let addedItem = state.items.find(item=> item.code === action.code) 
         
         //if the qt == 0 then it should be removed
@@ -98,7 +101,7 @@ const cartReducer = (state = initState, action) => {
             let newTotal = state.total - addedItem.price
             return{
                 ...state,
-                
+                addedItems: [...state.addedItems],
                 total: newTotal
             }
         }   
