@@ -8,7 +8,7 @@ const Navbar = () => {
             <Link to="/" className="brand-logo">ACME Supermarket</Link>
             <StyledLinksDiv>
                 <Link to="/">Shop</Link>
-                <Link to="/cart">My cart</Link>
+                <Link to="/basket">My basket</Link>
             </StyledLinksDiv>
         </StyledNav>
     )

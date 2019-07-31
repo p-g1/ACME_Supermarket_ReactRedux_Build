@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import cartReducer from './reducers/cartReducer';
+import basketReducer from './reducers/basketReducer';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 const store = createStore(
-    cartReducer,
+    basketReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

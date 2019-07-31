@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Components/Home/Home';
-import Cart from './Components/Cart/Cart';
+import Basket from './Components/Basket/Basket';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <Navbar />
         <Switch>      
           <Route exact path="/" component={Home} />
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/basket" component={Basket} />
         </Switch>
       </Router>
     </div>

@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 
-export const StyledItemCartPanel = styled.div`
-    max-width: 300px;
-    max-height: 300px;
+export const StyledItemBasketPanel = styled.div`
+    max-width: 350px;
     background: #698EB8;
     display: flex;
     margin: 20px;
 `
 
-export const StyledItemCartImage = styled.img`
+export const StyledItemBasketImage = styled.img`
     max-width: 200px;
-    max-height: 200px;
+    max-height: 150px;
+    margin: 20px;
 `
 
 export const StyledButton = styled.button`
-    
+    margin: 5px;
 `
 
 export const StyledItemDetails = styled.div`
@@ -38,8 +38,12 @@ export const StyledIncrementButtons = styled.div`
  
 `
 
-export const StyledCart = styled.div`
+export const StyledBasket = styled.div`
     margin: auto;
     width: 30%;
     display: flex;
+`
+
+export const StyledDiscountDetails = styled(StyledItemDetails)`
+    color: red;
 `

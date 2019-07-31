@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions/cartActions';
+import { addToBasket } from '../../actions/Actions';
 import { StyledItemPanel, StyledItemImage, StyledItemDetails, StyledItemCollection, StyledHomeSelection } from './Home.styled';
 
 class Home extends Component {
     
-    handleClick = (code) => {
-        this.props.addToCart(code);
+    handleClick = code => {
+        this.props.addToBasket(code);
     }
     
     render() {
@@ -18,6 +18,7 @@ class Home extends Component {
                         <p>{item.name}</p>
                         <p>Price: £{item.price}</p>
                         <button onClick={() => {this.handleClick(item.code)}}>add</button>
+                        {item.special_offer && <p>Offer: {item.special_offer}</p>}
                     </StyledItemDetails>
                 </StyledItemPanel>
             )
@@ -33,15 +34,15 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         items: state.items
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        addToCart: (code) => {dispatch(addToCart(code))}
+        addToBasket: code => {dispatch(addToBasket(code))}
     }
 }
 
