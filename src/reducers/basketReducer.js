@@ -86,6 +86,12 @@ const basketReducer = (state = InitialState, action) => {
         let itemToRemove = state.addedItems.find( item => action.code === item.code);
         let new_items = state.addedItems.filter( item => action.code !== item.code);
         let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity);
+
+        itemToRemove.quantity = 0;
+
+        if (multibuyRemove(itemToRemove.code, itemToRemove.quantity)) {
+            itemToRemove.price = multibuyFullPrice;
+        }
         
         return {
             ...state,
