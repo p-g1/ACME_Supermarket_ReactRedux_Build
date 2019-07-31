@@ -6,16 +6,15 @@ import { StyledItemBasketPanel, StyledItemBasketImage, StyledButton, StyledItemD
 
 class Basket extends Component{
 
-    handleAddQuantity = (code) => {
+    handleAddQuantity = code => {
         this.props.addQuantity(code);
     };
 
-    handleSubtractQuantity = (code) => {
+    handleSubtractQuantity = code => {
         this.props.subtractQuantity(code);
-        console.log(this.props);
     };
 
-    handleRemove = (code) => {
+    handleRemove = code => {
         this.props.removeItem(code);
     };
 
