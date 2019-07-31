@@ -1,6 +1,6 @@
 import { ADD_TO_BASKET, ADD_QUANTITY, SUBTRACT_QUANTITY, REMOVE_ITEM } from '../actions/actionTypes/actionTypes'
 import InitialState from '../State/InitialState';
-import { twoForOne, multibuy, discountedPrice } from '../Discounts';
+import { twoForOne, multibuyAdd, multibuyRemove, multibuyDiscountedPrice, multibuyFullPrice } from '../Discounts';
 
 const basketReducer = (state = InitialState, action) => {
 
@@ -13,8 +13,8 @@ const basketReducer = (state = InitialState, action) => {
 
         if (existing_item) 
         {
-            if (multibuy(addedItem.code, addedItem.quantity)) {
-                addedItem.price = discountedPrice;
+            if (multibuyAdd(addedItem.code, addedItem.quantity)) {
+                addedItem.price = multibuyDiscountedPrice;
             }
         }
 
@@ -35,8 +35,8 @@ const basketReducer = (state = InitialState, action) => {
 
         addedItem.quantity += twoForOne(addedItem.code) ? 2 : 1;
 
-        if (multibuy(addedItem.code, addedItem.quantity)) {
-            addedItem.price = discountedPrice;
+        if (multibuyAdd(addedItem.code, addedItem.quantity)) {
+            addedItem.price = multibuyDiscountedPrice;
         }
 
         let newTotal = addedItem.quantity * addedItem.price / (twoForOne(addedItem.code) ? 2 : 1);
@@ -52,7 +52,7 @@ const basketReducer = (state = InitialState, action) => {
         
         let addedItem = state.items.find( item => item.code === action.code); 
         
-        if (addedItem.quantity === 1 || (addedItem.quantity === 2 && addedItem.code === "FR1")) {
+        if (addedItem.quantity === 1 || addedItem.quantity === 2 && twoForOne(addedItem.code)) {
             let new_items = state.addedItems.filter( item => item.code !== action.code);
             let newTotal = state.total - addedItem.price;
             
@@ -63,15 +63,13 @@ const basketReducer = (state = InitialState, action) => {
             }
         }
         else {
-            addedItem.quantity -= 1;
 
-            if (addedItem.code === "FR1") {
-                addedItem.quantity -= 1;
+            addedItem.quantity -= twoForOne(addedItem.code) ? 2 : 1;
+
+            if (multibuyRemove(addedItem.code, addedItem.quantity)) {
+                addedItem.price = multibuyFullPrice;
             }
 
-            if (addedItem.code === "SR1" && addedItem.quantity < 3) {
-                addedItem.price = 5.00;
-            }
 
             let newTotal = addedItem.quantity * addedItem.price;
             
@@ -85,7 +83,7 @@ const basketReducer = (state = InitialState, action) => {
 
     if (action.type === REMOVE_ITEM) {
       
-        let itemToRemove= state.addedItems.find( item => action.code === item.code);
+        let itemToRemove = state.addedItems.find( item => action.code === item.code);
         let new_items = state.addedItems.filter( item => action.code !== item.code);
         let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity);
         
