@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addToBasket } from '../../actions/Actions';
 import { twoForOne, multibuyAdd } from '../../Discounts/Discounts';
 import S from './Home.styled';
+import Button from '@material-ui/core/Button';
 
 class Home extends Component {
     
@@ -26,18 +27,15 @@ class Home extends Component {
                             {multibuyAdd(item.code, item.quantity) && <p>(applied)</p> }
                             {twoForOne(item.code) && item.quantity > 0 && <p>(applied)</p> }
                         </S.PromoDetails>}
-                        <button onClick={() => {this.handleClick(item.code)}}>add</button>
+                        <Button variant="contained" disableRipple={true} onClick={() => {this.handleClick(item.code)}}>add</Button>
                     </S.ItemDetails>
                 </S.ItemPanel>
             )
         })
         return(
-            <>
-                <h3>For Sale</h3>
-                <S.ItemCollection>
-                    {itemList}
-                </S.ItemCollection>
-            </>
+            <S.ItemCollection>
+                {itemList}
+            </S.ItemCollection>
         )
     }
 }

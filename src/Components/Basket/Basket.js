@@ -18,45 +18,56 @@ class Basket extends Component{
         this.props.removeItem(code);
     };
 
+  
+
     render(){
+        let basketTotal = 0;
 
         let addedItems = this.props.items.length ?
             (  
             this.props.items.map( item => {
+
+                let total = (item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)).toFixed(2);
+                
+                basketTotal += Number(total);
+
+                console.log(basketTotal);
               
                 return(       
                     <S.ItemBasketPanel key={item.code}>
                         <S.ItemBasketImage src={item.img} alt={item.img} />
                         <S.ItemDetails>
                             <p>{item.name}</p>
-                            <p>Total: £{(item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)).toFixed(2)}</p> 
+                            <p>Total: £{total}</p> 
                             <p>Quantity: {item.quantity}</p>
                             
-                            <S.IncrementButtons>
+                            <div>
                                 <S.Button onClick={() => {this.handleAddQuantity(item.code)}}>+</S.Button>
                                 <S.Button onClick={() => {this.handleSubtractQuantity(item.code)}}>-</S.Button>
-                            </S.IncrementButtons>
+                            </div>
                                 <S.Button onClick={() => {this.handleRemove(item.code)}}>Remove</S.Button>
                                 {multibuyAdd(item.code, item.quantity) && <S.DiscountDetails>Offer applied</S.DiscountDetails> }
-                        {twoForOne(item.code) && <S.DiscountDetails>Offer applied</S.DiscountDetails> }
+                                {twoForOne(item.code) && <S.DiscountDetails>Offer applied</S.DiscountDetails> }
                         </S.ItemDetails>         
                     </S.ItemBasketPanel>       
                     )
-                })
+                })  
             )
             :
             (
-            <h5> Empty</h5>
-            )
+            <S.Empty> Empty</S.Empty>
+            );
+ 
        return(
                 <S.Basket>
                     <h5>Basket:</h5>
                     <div>
                         {addedItems}
                     </div>
-                    {this.props.total &&<h5>
-                        Total: {this.props.total}
-                    </h5>}
+                    {basketTotal > 0 &&
+                        <S.BasketTotal>
+                            <h5>Total: £{basketTotal.toFixed(2)}</h5>
+                        </S.BasketTotal>}
                 </S.Basket>        
        )
     }

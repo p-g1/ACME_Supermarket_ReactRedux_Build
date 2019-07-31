@@ -6,10 +6,10 @@ const Navbar = () => {
     return (
         <S.Nav>
             <Link to="/" className="brand-logo">ACME Supermarket</Link>
-            <S.LinksDiv>
+            <div>
                 <Link to="/">Shop</Link>
                 <Link to="/basket">My basket</Link>
-            </S.LinksDiv>
+            </div>
         </S.Nav>
     )
 }
