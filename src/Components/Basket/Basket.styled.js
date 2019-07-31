@@ -1,23 +1,26 @@
 import styled from 'styled-components'
 
-export const StyledItemBasketPanel = styled.div`
+const S = {};
+
+S.ItemBasketPanel = styled.div`
     max-width: 350px;
     background: #698EB8;
     display: flex;
     margin: 20px;
+    border-radius: 5px;
 `
 
-export const StyledItemBasketImage = styled.img`
+ S.ItemBasketImage = styled.img`
     max-width: 200px;
     max-height: 150px;
     margin: 20px;
 `
 
-export const StyledButton = styled.button`
+ S.Button = styled.button`
     margin: 5px;
 `
 
-export const StyledItemDetails = styled.div`
+ S.ItemDetails = styled.div`
     padding: 10px;
     
     p {
@@ -34,16 +37,18 @@ export const StyledItemDetails = styled.div`
     }
 `
 
-export const StyledIncrementButtons = styled.div`
+ S.IncrementButtons = styled.div`
  
 `
 
-export const StyledBasket = styled.div`
+ S.Basket = styled.div`
     margin: auto;
     width: 30%;
     display: flex;
 `
 
-export const StyledDiscountDetails = styled(StyledItemDetails)`
+ S.DiscountDetails = styled(S.ItemDetails)`
     color: green;
 `
+
+export default S;

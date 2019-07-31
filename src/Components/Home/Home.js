@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addToBasket } from '../../actions/Actions';
-import { twoForOne, multibuyAdd } from '../../Discounts';
-import { StyledItemPanel, StyledItemImage, StyledItemDetails, StyledItemCollection, StyledHomeSelection, StyledPromoDetails } from './Home.styled';
+import { twoForOne, multibuyAdd } from '../../Discounts/Discounts';
+import S from './Home.styled';
 
 class Home extends Component {
     
@@ -14,30 +14,30 @@ class Home extends Component {
         let itemList = this.props.items.map(item => {
   
             return(
-                <StyledItemPanel  key={item.code}>
-                    <StyledItemDetails>
-                        <StyledItemImage src={item.img} alt={item.name} />
-                        <p>{item.name}</p>
-                        <p>Price: £{item.price.toFixed(2)}</p>
-                        <button onClick={() => {this.handleClick(item.code)}}>add</button>
-                        {item.special_offer && <StyledPromoDetails>
+                <S.ItemPanel  key={item.code}>
+                    <S.ItemDetails>
+                        <S.ItemImage src={item.img} alt={item.name} />
+                        <S.NameAndPrice>
+                            <p>{item.name}</p>
+                            <p>£{item.price.toFixed(2)}</p>
+                        </S.NameAndPrice>
+                        {item.special_offer && <S.PromoDetails>
                             <p>Offer: {item.special_offer}</p>
-                            {multibuyAdd(item.code, item.quantity) && <p> (applied)</p> }
-                            {twoForOne(item.code) && item.quantity > 0 && <p> (applied)</p> }
-                        </StyledPromoDetails>
-                        }
-                        
-                    </StyledItemDetails>
-                </StyledItemPanel>
+                            {multibuyAdd(item.code, item.quantity) && <p>(applied)</p> }
+                            {twoForOne(item.code) && item.quantity > 0 && <p>(applied)</p> }
+                        </S.PromoDetails>}
+                        <button onClick={() => {this.handleClick(item.code)}}>add</button>
+                    </S.ItemDetails>
+                </S.ItemPanel>
             )
         })
         return(
-            <StyledHomeSelection>
+            <>
                 <h3>For Sale</h3>
-                <StyledItemCollection>
+                <S.ItemCollection>
                     {itemList}
-                </StyledItemCollection>
-            </StyledHomeSelection>
+                </S.ItemCollection>
+            </>
         )
     }
 }

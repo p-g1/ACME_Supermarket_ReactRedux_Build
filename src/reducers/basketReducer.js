@@ -1,6 +1,6 @@
 import { ADD_TO_BASKET, ADD_QUANTITY, SUBTRACT_QUANTITY, REMOVE_ITEM } from '../actions/actionTypes/actionTypes'
 import InitialState from '../State/InitialState';
-import { twoForOne, multibuyAdd, multibuyRemove, multibuyDiscountedPrice, multibuyFullPrice } from '../Discounts';
+import { twoForOne, multibuyAdd, multibuyRemove, multibuyDiscountedPrice, multibuyFullPrice } from '../Discounts/Discounts';
 
 const basketReducer = (state = InitialState, action) => {
 

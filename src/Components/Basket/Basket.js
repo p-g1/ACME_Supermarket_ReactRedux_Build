@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { removeItem, addQuantity, subtractQuantity} from '../../actions/Actions'
-import { twoForOne, multibuyAdd } from '../../Discounts';
-import { StyledItemBasketPanel, StyledItemBasketImage, StyledButton, StyledItemDetails, StyledIncrementButtons, StyledBasket, StyledDiscountDetails } from './Basket.styled';
+import { twoForOne, multibuyAdd } from '../../Discounts/Discounts';
+import S from './Basket.styled';
 
 class Basket extends Component{
 
@@ -25,23 +25,22 @@ class Basket extends Component{
             this.props.items.map( item => {
               
                 return(       
-                    <StyledItemBasketPanel key={item.code}>
-                        <StyledItemBasketImage src={item.img} alt={item.img} />
-                        <StyledItemDetails>
+                    <S.ItemBasketPanel key={item.code}>
+                        <S.ItemBasketImage src={item.img} alt={item.img} />
+                        <S.ItemDetails>
                             <p>{item.name}</p>
-                            <p>Price: £{(item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)).toFixed(2)}</p> 
+                            <p>Total: £{(item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)).toFixed(2)}</p> 
                             <p>Quantity: {item.quantity}</p>
                             
-                            <StyledIncrementButtons>
-                                <StyledButton onClick={() => {this.handleAddQuantity(item.code)}}>+</StyledButton>
-                                <StyledButton onClick={() => {this.handleSubtractQuantity(item.code)}}>-</StyledButton>
-                            </StyledIncrementButtons>
-                                <StyledButton onClick={() => {this.handleRemove(item.code)}}>Remove</StyledButton>
-                                {multibuyAdd(item.code, item.quantity) && <StyledDiscountDetails>10% Multibuy discount applied</StyledDiscountDetails> }
-                        {twoForOne(item.code) && <StyledDiscountDetails>2 for 1 discount applied</StyledDiscountDetails> }
-                        </StyledItemDetails>         
-                
-                    </StyledItemBasketPanel>       
+                            <S.IncrementButtons>
+                                <S.Button onClick={() => {this.handleAddQuantity(item.code)}}>+</S.Button>
+                                <S.Button onClick={() => {this.handleSubtractQuantity(item.code)}}>-</S.Button>
+                            </S.IncrementButtons>
+                                <S.Button onClick={() => {this.handleRemove(item.code)}}>Remove</S.Button>
+                                {multibuyAdd(item.code, item.quantity) && <S.DiscountDetails>Offer applied</S.DiscountDetails> }
+                        {twoForOne(item.code) && <S.DiscountDetails>Offer applied</S.DiscountDetails> }
+                        </S.ItemDetails>         
+                    </S.ItemBasketPanel>       
                     )
                 })
             )
@@ -50,7 +49,7 @@ class Basket extends Component{
             <h5> Empty</h5>
             )
        return(
-                <StyledBasket>
+                <S.Basket>
                     <h5>Basket:</h5>
                     <div>
                         {addedItems}
@@ -58,7 +57,7 @@ class Basket extends Component{
                     {this.props.total &&<h5>
                         Total: {this.props.total}
                     </h5>}
-                </StyledBasket>        
+                </S.Basket>        
        )
     }
 }

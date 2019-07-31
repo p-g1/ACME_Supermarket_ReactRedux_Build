@@ -1,59 +1,65 @@
 import styled from 'styled-components'
 
-export const StyledHomeSelection = styled.div`
-    
-`
+const S = {};
 
-export const StyledItemCollection = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-`
-
-export const StyledItemPanel = styled.div`
+S.ItemPanel = styled.div`
     max-width: 400px;
     max-height: 400px;
     background: #698EB8;
     display: flex;
+    border-radius: 5px;
     flex-direction: column;
     margin: 20px;
 `
 
-export const StyledItemImage = styled.img`
-    max-width: 300px;
-    max-height: 300px;
-`
-
-export const StyledButton = styled.button`
-    background: red;
-`
-
-export const StyledItemDetails = styled.div`
+S.ItemDetails = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
 
     p {
         color: white;
+        font-weight: 700;
     }
 
     p:nth-child(2) {
         margin-bottom: 0px;
-        font-weight: 700;
     }
 
     button {
-       width: 30%;
+       margin: auto;
     }
 `
 
-export const StyledPromoDetails = styled.div`
+S.ItemImage = styled.img`
+    max-width: 300px;
+    max-height: 300px;
+`
+
+S.NameAndPrice = styled.div`
     display: flex;
+    justify-content: space-around;
+`
+
+S.PromoDetails = styled.div`
+    display: flex;
+    justify-content: center;
+
     p {
         color: white;
+        margin-top: 0px;
+        font-weight: 500;
     }
     p:nth-child(2) {
         color: green;
         margin-left: 5px;
     }
 `
+
+S.ItemCollection = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+`
+
+export default S;

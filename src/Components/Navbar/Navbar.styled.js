@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const StyledNav = styled.nav`
+const S = {};
+
+S.Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     line-height: 38px;
@@ -16,13 +18,14 @@ export const StyledNav = styled.nav`
         margin: 0px 10px;
     }
 `
-export const StyledLinksDiv = styled.div`
+S.LinksDiv = styled.div`
     right: 0px;
-    
-    
+      
     a {
         color: white;
         text-decoration: none;
         font-weight: 700;
     }
 `
+
+export default S;
