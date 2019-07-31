@@ -52,7 +52,7 @@ const basketReducer = (state = InitialState, action) => {
         
         let addedItem = state.items.find( item => item.code === action.code); 
         
-        if (addedItem.quantity === 1 || addedItem.quantity === 2 && twoForOne(addedItem.code)) {
+        if ((addedItem.quantity === 1 || addedItem.quantity === 2) && twoForOne(addedItem.code)) {
             let new_items = state.addedItems.filter( item => item.code !== action.code);
             let newTotal = state.total - addedItem.price;
             

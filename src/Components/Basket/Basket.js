@@ -29,16 +29,18 @@ class Basket extends Component{
                         <StyledItemBasketImage src={item.img} alt={item.img} />
                         <StyledItemDetails>
                             <p>{item.name}</p>
-                            <p>Price: £{item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)}</p> 
+                            <p>Price: £{(item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)).toFixed(2)}</p> 
                             <p>Quantity: {item.quantity}</p>
-                            {multibuyAdd(item.code, item.quantity) && <StyledDiscountDetails>20% Multibuy discount applied</StyledDiscountDetails> }
-                            {twoForOne(item.code) && <StyledDiscountDetails>2 for 1 discount applied</StyledDiscountDetails> }
+                            
                             <StyledIncrementButtons>
                                 <StyledButton onClick={() => {this.handleAddQuantity(item.code)}}>+</StyledButton>
                                 <StyledButton onClick={() => {this.handleSubtractQuantity(item.code)}}>-</StyledButton>
                             </StyledIncrementButtons>
                                 <StyledButton onClick={() => {this.handleRemove(item.code)}}>Remove</StyledButton>
+                                {multibuyAdd(item.code, item.quantity) && <StyledDiscountDetails>10% Multibuy discount applied</StyledDiscountDetails> }
+                        {twoForOne(item.code) && <StyledDiscountDetails>2 for 1 discount applied</StyledDiscountDetails> }
                         </StyledItemDetails>         
+                
                     </StyledItemBasketPanel>       
                     )
                 })

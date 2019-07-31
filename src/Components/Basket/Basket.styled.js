@@ -45,5 +45,5 @@ export const StyledBasket = styled.div`
 `
 
 export const StyledDiscountDetails = styled(StyledItemDetails)`
-    color: red;
+    color: green;
 `

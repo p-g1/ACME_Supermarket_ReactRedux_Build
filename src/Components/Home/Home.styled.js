@@ -46,3 +46,14 @@ export const StyledItemDetails = styled.div`
        width: 30%;
     }
 `
+
+export const StyledPromoDetails = styled.div`
+    display: flex;
+    p {
+        color: white;
+    }
+    p:nth-child(2) {
+        color: green;
+        margin-left: 5px;
+    }
+`
