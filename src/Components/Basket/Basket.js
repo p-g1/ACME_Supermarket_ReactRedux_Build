@@ -19,7 +19,6 @@ class Basket extends Component{
     };
 
   
-
     render(){
         let basketTotal = 0;
 
@@ -30,8 +29,6 @@ class Basket extends Component{
                 let total = (item.quantity * item.price / (twoForOne(item.code) ? 2 : 1)).toFixed(2);
                 
                 basketTotal += Number(total);
-
-                console.log(basketTotal);
               
                 return(       
                     <S.ItemBasketPanel key={item.code}>
